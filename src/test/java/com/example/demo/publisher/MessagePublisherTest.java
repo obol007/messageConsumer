@@ -71,7 +71,7 @@ class MessagePublisherTest {
         publisher.sendMessages(List.of(message2));
         //then
         String expectedTimestamp = "2021-05-01T13:01:01.001";
-        String actualTimestamp = priceRepository.getEUR_JPY().getTimestamp().toString();
+        String actualTimestamp = priceRepository.getEurJpy().getTimestamp().toString();
         assertEquals(expectedTimestamp, actualTimestamp);
     }
 
@@ -84,9 +84,9 @@ class MessagePublisherTest {
         //then
         String expectedBid = "9990";
         String expectedAsk = "10010";
-        System.out.println(priceRepository.getEUR_JPY());
-        String actualBid = priceRepository.getEUR_JPY().getBid().toString();
-        String actualAsk = priceRepository.getEUR_JPY().getAsk().toString();
+        System.out.println(priceRepository.getEurJpy());
+        String actualBid = priceRepository.getEurJpy().getBid().toString();
+        String actualAsk = priceRepository.getEurJpy().getAsk().toString();
         assertEquals(expectedBid, actualBid);
         assertEquals(expectedAsk, actualAsk);
     }

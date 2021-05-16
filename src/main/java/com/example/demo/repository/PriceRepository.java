@@ -23,15 +23,15 @@ public class PriceRepository {
     @Autowired
     private final SubscriberRepository subscriberRepository;
 
-    private Price EUR_USD;
-    private Price EUR_JPY;
-    private Price GBP_USD;
+    private Price eurUsd;
+    private Price eurJpy;
+    private Price gbpUsd;
 
     public List<Price> getPrices() {
         List<Price> prices = new ArrayList<>(3);
-        prices.add(getEUR_JPY());
-        prices.add(getEUR_USD());
-        prices.add(getGBP_USD());
+        prices.add(getEurJpy());
+        prices.add(getEurUsd());
+        prices.add(getGbpUsd());
         while (prices.remove(null)) ;
         return prices;
     }
@@ -49,25 +49,25 @@ public class PriceRepository {
     private synchronized void updatePrice(Price price) {
         switch (price.getInstrument()) {
             case EUR_JPY:
-                if (EUR_JPY == null) {
-                    setEUR_JPY(price);
+                if (eurJpy == null) {
+                    setEurJpy(price);
                 } else if
-                (isNewPrice(price, this.EUR_JPY.getTimestamp())) {
-                    setEUR_JPY(price);
+                (isNewPrice(price, this.eurJpy.getTimestamp())) {
+                    setEurJpy(price);
                 }
                 break;
             case EUR_USD:
-                if (EUR_USD == null) {
-                    setEUR_USD(price);
-                } else if (isNewPrice(price, this.EUR_USD.getTimestamp())) {
-                    setEUR_USD(price);
+                if (eurUsd == null) {
+                    setEurUsd(price);
+                } else if (isNewPrice(price, this.eurUsd.getTimestamp())) {
+                    setEurUsd(price);
                 }
                 break;
             default:
-                if (GBP_USD == null) {
-                    setGBP_USD(price);
-                } else if (isNewPrice(price, this.GBP_USD.getTimestamp())) {
-                    setGBP_USD(price);
+                if (gbpUsd == null) {
+                    setGbpUsd(price);
+                } else if (isNewPrice(price, this.gbpUsd.getTimestamp())) {
+                    setGbpUsd(price);
                 }
                 break;
         }
